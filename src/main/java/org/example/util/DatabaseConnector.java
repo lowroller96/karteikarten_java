@@ -25,11 +25,11 @@ public class DatabaseConnector {
         String sql ="INSERT INTO users (username,password-hash) VALUES (?, ?)";
         try (Connection connection=connect();
              PreparedStatement preparedStatement =connection.prepareStatement(sql)) {
-            String hash= BCrypt.hashpw(password, BCrypt.gensalt()));
-        preparedStatement.setString(1,username);
-        preparedStatement.setString(2,hash);
-        preparedStatement.executeUpdate();
-return true;
+            String hash= BCrypt.hashpw(password, BCrypt.gensalt());
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,hash);
+            preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.out.println("Registrierung fehlgeschlagen! Bitte später nochmalig probieren" + e.getMessage());
             return false;
