@@ -1,5 +1,4 @@
 package org.example.model;
-import java.util.ArrayList;
 import java.util.List;
 public class Card {
     private String id;
@@ -7,11 +6,16 @@ public class Card {
     private List <AnswerOption> answerOptions;
     private String topic;
     // Spaced Repetition hinzufügen
-    private int repetition;
-    private int intervall;
-    private double efactor;
-    private String lastReviewed;
-
+    private int repetition=0;
+    private int intervall=1;
+    private double efactor=2.5;
+    private String lastReviewed="";
+public Card(String id,String question,List<AnswerOption> answerOptions,String topic){
+    this.id=id;
+    this.question=question;
+    this.answerOptions=answerOptions;
+    this.topic=topic;
+}
     // Es folgen Getter und Setter
     public String getId(){
         return id;
@@ -58,8 +62,12 @@ public class Card {
     public  String getLastReviewed(){
         return lastReviewed;
     }
-    public void setLastReviewed(){
+    public void setLastReviewed(String string){
         this.lastReviewed=lastReviewed;
     }
+    public void setInterval(int interval) {this.intervall = interval;}
 
+
+    public void setEfactor(double max) {
+    }
 }

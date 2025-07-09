@@ -38,7 +38,8 @@ public class DatabaseConnector {
 public static int loginUser(String username,String password) {
         String sql="SELECT id, password_hash FROM users WHERE username = ?";
         try(Connection connection=connect();
-        PreparedStatement preparedStatement =connection.prepareStatement(sql){
+        PreparedStatement preparedStatement =connection.prepareStatement(sql)
+            {
             preparedStatement.setString(1,username);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

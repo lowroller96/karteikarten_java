@@ -1,11 +1,9 @@
 package org.example.util;
 
 public class Session {
-    private static int userId=-1;
-    public static void setUserId(int id) {
-        userId=id;
-    }
-    public static int getUserId() {
-        return userId;
-    }
+   private static int userId=-1;
+   public static void setUserId(int id){userId=id;}
+    public static int getUserId(){return userId;}
+    public static void clear() {userId=-1;}
+    public static boolean isLoggedIn(){return userId>0;}
 }

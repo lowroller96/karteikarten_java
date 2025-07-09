@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.CardviewController"
+      alignment="CENTER" spacing="15" padding="20">
+
+    <Label fx:id="questionLabel" wrapText="true" style="-fx-font-size: 16px;"/>
+
+    <VBox fx:id="answersBox" spacing="10"/>
+
+    <Label text="Wie schwer war die Karte?" />
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Leicht" onAction="#onEasy"/>
+        <Button text="Schwer" onAction="#onHard"/>
+        <Button text="Sehr schwer" onAction="#onVeryHard"/>
+    </HBox>
+
+    <Button text="Weiter" onAction="#onNext" prefWidth="120"/>
+    <Label fx:id="feedbackLabel" textFill="green"/>
+</VBox>
