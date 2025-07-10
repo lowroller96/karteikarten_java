@@ -10,12 +10,12 @@ public class SpacedRepetition {
         if (grade >= 3) {
             card.setRepetition(card.getRepetition() + 1);
             if (card.getRepetition() == 1) {
-                card.setInterval(1);
+                card.setIntervall(1);
             } else if (card.getRepetition() == 2) {
-                card.setInterval(6);
+                card.setIntervall(6);
             } else {
                 int nextInterval = (int) Math.round(card.getIntervall() * ef);
-                card.setInterval(nextInterval);
+                card.setIntervall(nextInterval);
             }
 
             // E-Faktor aktualisieren
@@ -23,7 +23,7 @@ public class SpacedRepetition {
             card.setEfactor(Math.max(1.3, newEF));
         } else {
             card.setRepetition(0);
-            card.setInterval(1);
+            card.setIntervall(1);
         }
 
         card.setLastReviewed(LocalDate.now().toString());

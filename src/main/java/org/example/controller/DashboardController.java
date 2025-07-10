@@ -1,5 +1,7 @@
 package org.example.controller;
+import javafx.event.ActionEvent;
 import org.example.model.Card;
+import org.example.util.DatabaseConnector;
 import org.example.util.JSONUtils;
 import org.example.util.Session;
 import javafx.collections.FXCollections;
@@ -9,7 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,14 +30,41 @@ public class DashboardController {
     @FXML private Label statusLabel;
     private List<Card> allCards;
     @FXML
+    String getUsernameFromDatabase(int userId) {
+        String username = null;
+        String query = "SELECT username FROM users WHERE id = ?";
+        try(Connection connection = DatabaseConnector.connect();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                username = resultSet.getString("username");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return username;
+    }
+
     public void initialize() {
         int userId=Session.getUserId();
         String username=getUsernameFromDatabase(userId);
         usernameLabel.setText(username);
-        loadUserCards(UserId);
+        onViewCards(userId);
     }
-    private void loadUserCards(int userId) {
+    @FXML
+    private void onViewCards() {onViewCards(Session.getUserId());}
+    @FXML
+    private void onViewCards(int userId) {
         String path ="userdata/"+userId+"_cards.json";
+        File file = new File(path);
+        if (!file.exists()) {
+            System.out.println("Datei nicht gefunden: " + path);
+            statusLabel.setText("Noch keine Karten vorhanden.");
+            allCards = new ArrayList<>();
+            updateListView(allCards);
+            return;
+        }
         try {
             allCards=JSONUtils.loadCardsFromFile(path);
             updateListView(allCards);
@@ -65,19 +101,15 @@ public class DashboardController {
         }
     }
     @FXML
-    public String onLogout(){
+    public void onLogout(){
         Session.setUserId(-1);
         try {
             Stage stage=(Stage) usernameLabel.getScene().getWindow();
-            Scene scene=new Scene(FXMLLoader.load(getClass().getResource("/fxml/login.fxml)));
-                    stage.setScene(scene);
-        } catch (IOException e) {
+            Scene scene=new Scene(FXMLLoader.load(getClass().getResource("/fxml/login.fxml")));
+            stage.setScene(scene);
+        }   catch (IOException e) {
             e.printStackTrace();
         }
-    String getUsernameFromDatabse(int userId); {
-            return "Benutzer "+userId;
-        }
+
     }
-
-
 }

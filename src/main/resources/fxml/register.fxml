@@ -5,13 +5,13 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controller.RegisterController"
-      spacing="10" alignment="CENTER" padding="20">
+      fx:controller="org.example.controller.RegisterController"
+      spacing="10" alignment="CENTER" >
 
     <Label text="Registrieren"/>
     <TextField fx:id="usernameField" promptText="Benutzername"/>
     <PasswordField fx:id="passwordField" promptText="Passwort"/>
     <Button text="Registrieren" onAction="#onRegister"/>
-    <Button text="Zurück" onAction="#onBack"/>
+    <Button text="Zurück zum Login" onAction="#onBack"/>
     <Label fx:id="statusLabel" textFill="red"/>
 </VBox>

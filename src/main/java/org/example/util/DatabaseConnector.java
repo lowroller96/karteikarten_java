@@ -22,7 +22,7 @@ public class DatabaseConnector {
      return DriverManager.getConnection(url,user,password);
     }
     public static boolean registerUser(String username,String password) {
-        String sql ="INSERT INTO users (username,password-hash) VALUES (?, ?)";
+        String sql ="INSERT INTO users (username,password_hash) VALUES (?, ?)";
         try (Connection connection=connect();
              PreparedStatement preparedStatement =connection.prepareStatement(sql)) {
             String hash= BCrypt.hashpw(password, BCrypt.gensalt());
@@ -38,7 +38,7 @@ public class DatabaseConnector {
 public static int loginUser(String username,String password) {
         String sql="SELECT id, password_hash FROM users WHERE username = ?";
         try(Connection connection=connect();
-        PreparedStatement preparedStatement =connection.prepareStatement(sql)
+        PreparedStatement preparedStatement =connection.prepareStatement(sql))
             {
             preparedStatement.setString(1,username);
             ResultSet resultSet = preparedStatement.executeQuery();

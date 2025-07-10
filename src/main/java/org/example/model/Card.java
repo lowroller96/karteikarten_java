@@ -23,51 +23,55 @@ public Card(String id,String question,List<AnswerOption> answerOptions,String to
     public void setId(String id) {
         this.id=id;
     }
+
     public String getQuestion(){
         return question;
     }
-    public void setQuestion(){
+    public void setQuestion(String question){
         this.question=question;
     }
+
     public List<AnswerOption> getAnswerOptions(){
         return answerOptions;
     }
     public void setAnswerOptions(List<AnswerOption> answerOptions) {
         this.answerOptions = answerOptions;
     }
+
     public String getTopic(){
         return topic;
     }
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
     public int getRepetition(){
         return repetition;
     }
     public void setRepetition(int repetition){
         this.repetition=repetition;
     }
+
     public int getIntervall(){
         return intervall;
     }
     public void setIntervall(int intervall){
         this.intervall=intervall;
     }
+
     public double getEfactor(){
         return efactor;
     }
-    public void setEfactor(){
+    public void setEfactor(double efactor){
         this.efactor=efactor;
     }
+
     public  String getLastReviewed(){
         return lastReviewed;
     }
-    public void setLastReviewed(String string){
+    public void setLastReviewed(String lastReviewed){
         this.lastReviewed=lastReviewed;
     }
-    public void setInterval(int interval) {this.intervall = interval;}
 
 
-    public void setEfactor(double max) {
-    }
 }

@@ -5,13 +5,15 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controller.LoginController"
-      spacing="10" alignment="CENTER" padding="20">
+      fx:controller="org.example.controller.LoginController"
+      spacing="10" alignment="CENTER">
+
 
     <Label text="Login"/>
-    <TextField fx:id="usernameField" promptText="Benutzername"/>
-    <PasswordField fx:id="passwordField" promptText="Passwort"/>
+    <TextField fx:id="usernameField" promptText="Benutzername" />
+    <PasswordField fx:id="passwordField" promptText="Passwort" />
     <Button text="Login" onAction="#onLogin"/>
     <Button text="Registrieren" onAction="#onOpenRegister"/>
     <Label fx:id="statusLabel" textFill="red"/>
 </VBox>
+
